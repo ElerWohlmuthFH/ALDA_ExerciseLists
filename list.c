@@ -190,8 +190,4 @@ void helloWorld(node **list) {
     }
 }
 
-int main() {
-    node *list = NULL;
-    helloWorld(&list);
-    return 0;
-}
+

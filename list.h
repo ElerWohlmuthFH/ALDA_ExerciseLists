@@ -17,7 +17,7 @@ struct element {
 };
 
 typedef struct element node;
-
+void helloWorld(node **list);
 #endif /* list_h */
 
 
