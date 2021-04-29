@@ -41,7 +41,6 @@ void append(node **head_ref, char new_data) {
 }
 
 
-
 /* Given a reference (pointer to pointer) to the head of a list
    and a position, deletes the node at the given position */
 void deleteNode(node **head_ref, int position) {
@@ -80,19 +79,19 @@ void deleteNode(node **head_ref, int position) {
 // This function prints contents of linked list starting from
 // the given node
 void printList(node *node) {
+    printf("Lichterkette: ");
     while (node != NULL) {
-        printf(" %d ", node->data);
+        printf(" %c ", node->data);
         node = node->next;
     }
 }
 
 
 /* Function to reverse the linked list */
-static void reverse(node** head_ref)
-{
-    node* prev = NULL;
-    node* current = *head_ref;
-    node* next = NULL;
+static void reverse(node **head_ref) {
+    node *prev = NULL;
+    node *current = *head_ref;
+    node *next = NULL;
     while (current != NULL) {
         // Store next
         next = current->next;
@@ -106,7 +105,6 @@ static void reverse(node** head_ref)
     }
     *head_ref = prev;
 }
-
 
 
 struct element *insert(char data, int p, struct element **list) {
@@ -139,38 +137,57 @@ struct element *insert(char data, int p, struct element **list) {
 
 void helloWorld(node **list) {
 
-    char input;
-    printf("m: ");
-    scanf("%c", &input);
+    char input = 'i';
+    while (input != 'x') {
+        printf("m: ");
+        scanf(" %c", &input);
 
-    switch (input) {
-        case 'a':
-            printf("l: ");
-            scanf("%c", &input);
-            while (input != 0) {
-                push(list, input);
-            }
-            printList(*list);
-            break;
-        case 'e':
-            printf("l: ");
-            scanf("%c", &input);
-            while (input != 0) {
-                append(list, input);
-            }
-            printList(*list);
-            break;
-        case 'l':
-            break;
-        case 'i':
-            break;
-        case 'u':
-            break;
-        case 'x':
-            break;
+        switch (input) {
+            case 'a':
+                while (input != '0') {
+                    printf("l: ");
+                    scanf(" %c", &input);
+                    if (input != '0')
+                        push(list, input);
+                }
+                printList(*list);
+                printf("\n");
+                break;
+            case 'e':
+                while (input != '0') {
+                    printf("l: ");
+                    scanf(" %c", &input);
+                    if (input != '0')
+                        append(list, input);
+                }
+                printList(*list);
+                printf("\n");
+                break;
+            case 'l':
+                printf("p: ");
+                int pos;
+                scanf(" %d", &pos);
+                deleteNode(list,pos-1);
+                printList(*list);
+                printf("\n");
+                break;
+            case 'i':
+                printf("p: ");
+                int pos1;
+                scanf(" %d", &pos1);
+                printf("l: ");
+                scanf(" %c", &input);
+                insert(input,pos1,list);
+                printList(*list);
+                printf("\n");
+                break;
+            case 'u':
+                reverse(list);
+                printList(*list);
+                printf("\n");
+                break;
+        }
     }
-
-
 }
 
 int main() {
