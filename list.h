@@ -10,4 +10,14 @@
 
 #include <stdio.h>
 
+struct element {
+    char data;
+    struct element *next;
+    struct element *prev;
+};
+
+typedef struct element node;
+
 #endif /* list_h */
+
+
