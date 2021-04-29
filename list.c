@@ -37,7 +37,6 @@ void append(node **head_ref, char new_data) {
         last = last->next;
 
     last->next = new_node;
-    return;
 }
 
 
@@ -81,7 +80,10 @@ void deleteNode(node **head_ref, int position) {
 void printList(node *node) {
     printf("Lichterkette: ");
     while (node != NULL) {
-        printf(" %c ", node->data);
+        if(node->next != NULL)
+            printf(" %c - ", node->data);
+        else
+            printf(" %c ", node->data);
         node = node->next;
     }
 }
@@ -139,13 +141,13 @@ void helloWorld(node **list) {
 
     char input = 'i';
     while (input != 'x') {
-        printf("m: ");
+        printf("m:");
         scanf(" %c", &input);
 
         switch (input) {
             case 'a':
                 while (input != '0') {
-                    printf("l: ");
+                    printf("l:");
                     scanf(" %c", &input);
                     if (input != '0')
                         push(list, input);
@@ -155,7 +157,7 @@ void helloWorld(node **list) {
                 break;
             case 'e':
                 while (input != '0') {
-                    printf("l: ");
+                    printf("l:");
                     scanf(" %c", &input);
                     if (input != '0')
                         append(list, input);
@@ -164,7 +166,7 @@ void helloWorld(node **list) {
                 printf("\n");
                 break;
             case 'l':
-                printf("p: ");
+                printf("p:");
                 int pos;
                 scanf(" %d", &pos);
                 deleteNode(list,pos-1);
@@ -172,10 +174,10 @@ void helloWorld(node **list) {
                 printf("\n");
                 break;
             case 'i':
-                printf("p: ");
+                printf("p:");
                 int pos1;
                 scanf(" %d", &pos1);
-                printf("l: ");
+                printf("l:");
                 scanf(" %c", &input);
                 insert(input,pos1,list);
                 printList(*list);
